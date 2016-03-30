@@ -1,6 +1,5 @@
 package com.demo.security.filter
 
-import com.demo.security.exception.NoStackUnauthorizedAccessException
 import grails.plugin.springsecurity.web.authentication.GrailsUsernamePasswordAuthenticationFilter
 import groovy.util.logging.Log4j
 import org.springframework.security.authentication.AuthenticationServiceException
@@ -27,7 +26,7 @@ class ApplicationAuthenticationFilter extends GrailsUsernamePasswordAuthenticati
         String loginUuidFromSession = session.getAttribute('loginUuid')
         session.removeAttribute("loginUuid")
         if (!loginUuidFromSession.equals(loginUuidFromRequest)) {
-            throw new NoStackUnauthorizedAccessException("Unauthorized authentication request : Invalid uuid")
+            throw new AuthenticationServiceException("Unauthorized authentication request : Invalid uuid")
         }
         log.debug("<- attemptAuthentication: return super.attemptAuthentication(request, response)")
         return super.attemptAuthentication(request, response)
