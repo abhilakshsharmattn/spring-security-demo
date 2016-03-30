@@ -1,5 +1,6 @@
 package spring.security.demo
 
+import com.demo.security.exception.NoStackUnauthorizedAccessException
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
 
@@ -108,6 +109,12 @@ class LoginController {
             else if (exception instanceof LockedException) {
                 msg = g.message(code: "springSecurity.errors.login.locked")
             }
+
+            //To display appropriate message for unauthorized login access
+            else if (exception instanceof NoStackUnauthorizedAccessException) {
+                msg = g.message(code: "springSecurity.errors.login.unauthorized")
+            }
+
             else {
                 msg = g.message(code: "springSecurity.errors.login.fail")
             }
