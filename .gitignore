@@ -1,1 +1,7 @@
 target
+.asscache
+.classpath
+.idea/
+.slcache/
+spring-security-demo-grailsPlugins.iml
+spring-security-demo.iml
