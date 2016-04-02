@@ -18,4 +18,9 @@ class TestController {
     def customerUser() {
         render("This action is secured for role <b>ROLE_CUSTOMER_USER</b>.")
     }
+
+    @Secured("permitAll")
+    def passwordExpired() {
+        render("Your credentials have expired!!!!")
+    }
 }

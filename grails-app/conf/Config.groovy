@@ -122,6 +122,10 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.demo.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.demo.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.demo.Role'
 
+grails.plugin.springsecurity.failureHandler.exceptionMappings = [
+        'org.springframework.security.authentication.CredentialsExpiredException': '/test/passwordExpired'
+]
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/test'
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/test'
 grails.plugin.springsecurity.successHandler.superUserUrl = '/test/superUser'

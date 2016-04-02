@@ -13,6 +13,10 @@ class BootStrap {
         User adminUser = new User("admin_user", "asdf1234").save(flush: true)
         UserRole.create(adminUser, adminRole, true)
 
+        User passwordExpiredUser = new User("pass_exp_user", "asdf1234")
+        passwordExpiredUser.passwordExpired = true
+        passwordExpiredUser.save(flush: true)
+
         User superUser = new User("super_user", "asdf1234").save(flush: true)
         UserRole.create(superUser, superUserRole, true)
 
