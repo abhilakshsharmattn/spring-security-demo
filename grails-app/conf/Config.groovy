@@ -121,8 +121,12 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.demo.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.demo.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.demo.Role'
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/test'
+
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/test'
+grails.plugin.springsecurity.successHandler.superUserUrl = '/test/superUser'
+grails.plugin.springsecurity.successHandler.customerUserUrl = '/test/customerUser'
+
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/assets/**':       ['permitAll'],
