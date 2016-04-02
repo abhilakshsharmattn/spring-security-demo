@@ -8,4 +8,9 @@ class TestController {
     def index() {
         render("This action is secured for role ROLE_ADMIN.")
     }
+
+    @Secured("permitAll")
+    def passwordExpired() {
+        render("Your credentials have expired!!!!")
+    }
 }
