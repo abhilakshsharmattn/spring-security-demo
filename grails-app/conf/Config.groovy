@@ -127,7 +127,6 @@ grails.plugin.springsecurity.failureHandler.exceptionMappings = [
 ]
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/test'
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/test'
 grails.plugin.springsecurity.successHandler.superUserUrl = '/test/superUser'
 grails.plugin.springsecurity.successHandler.customerUserUrl = '/test/customerUser'
 
