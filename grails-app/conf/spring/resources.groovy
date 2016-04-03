@@ -1,7 +1,10 @@
+import com.demo.security.customEvent.AuthenticationFailureUserNotFoundEvent
 import com.demo.security.filter.ApplicationAuthenticationFilter
 import com.demo.security.handler.AuthenticationSuccessHandler
 import com.demo.security.listener.ApplicationSecurityEventListener
 import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.userdetails.NoStackUsernameNotFoundException
+import org.springframework.security.authentication.DefaultAuthenticationEventPublisher
 
 // Place your Spring DSL code here
 beans = {
@@ -36,5 +39,10 @@ beans = {
     }
 
     applicationSecurityEventListener(ApplicationSecurityEventListener) {
+    }
+
+    authenticationEventPublisher(DefaultAuthenticationEventPublisher) {
+        additionalExceptionMappings =
+                ([(NoStackUsernameNotFoundException.name): AuthenticationFailureUserNotFoundEvent.name] as Properties)
     }
 }

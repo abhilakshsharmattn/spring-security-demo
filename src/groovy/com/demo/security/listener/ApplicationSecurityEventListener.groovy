@@ -1,5 +1,6 @@
 package com.demo.security.listener
 
+import com.demo.security.customEvent.AuthenticationFailureUserNotFoundEvent
 import grails.plugin.springsecurity.userdetails.NoStackUsernameNotFoundException
 import org.springframework.context.ApplicationEvent
 import org.springframework.context.ApplicationListener
@@ -33,7 +34,14 @@ class ApplicationSecurityEventListener implements ApplicationListener<Applicatio
                     String username = e.getSource()?.principal
                     print "User \"${username}\" tried to login with incorrect password"
                 }
-            } else if (e instanceof AuthenticationFailureExpiredEvent) {
+            }
+
+            else if (e instanceof AuthenticationFailureUserNotFoundEvent) {
+                String username = e.getSource()?.principal
+                print "No user found with username \"${username}\"."
+            }
+
+            else if (e instanceof AuthenticationFailureExpiredEvent) {
             } else if (e instanceof AuthenticationFailureLockedEvent) {
             } else if (e instanceof AuthenticationFailureCredentialsExpiredEvent) {
             } else if (e instanceof AuthenticationFailureDisabledEvent) {
