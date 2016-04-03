@@ -1,3 +1,5 @@
+import com.demo.User
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -129,6 +131,12 @@ grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/test'
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.successHandler.superUserUrl = '/test/superUser'
 grails.plugin.springsecurity.successHandler.customerUserUrl = '/test/customerUser'
+
+grails.plugin.springsecurity.useSecurityEventListener = true
+grails.plugin.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
+    String username = e.getSource()?.principal?.getUsername()
+    print "User \"${username}\" logged in successfully"
+}
 
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
