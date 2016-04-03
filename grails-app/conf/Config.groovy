@@ -138,6 +138,8 @@ grails.plugin.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appC
     print "User \"${username}\" logged in successfully"
 }
 
+grails.plugin.springsecurity.dao.hideUserNotFoundExceptions = false
+
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/assets/**':       ['permitAll'],

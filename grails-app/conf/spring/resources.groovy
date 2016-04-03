@@ -1,5 +1,6 @@
 import com.demo.security.filter.ApplicationAuthenticationFilter
 import com.demo.security.handler.AuthenticationSuccessHandler
+import com.demo.security.listener.ApplicationSecurityEventListener
 import grails.plugin.springsecurity.SpringSecurityUtils
 
 // Place your Spring DSL code here
@@ -32,5 +33,8 @@ beans = {
         redirectStrategy = ref('redirectStrategy')
         superUserUrl = conf.successHandler.superUserUrl
         customerUserUrl = conf.successHandler.customerUserUrl
+    }
+
+    applicationSecurityEventListener(ApplicationSecurityEventListener) {
     }
 }
