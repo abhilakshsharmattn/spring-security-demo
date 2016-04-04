@@ -2,13 +2,17 @@ import com.demo.security.customEvent.AuthenticationFailureUserNotFoundEvent
 import com.demo.security.filter.ApplicationAuthenticationFilter
 import com.demo.security.handler.AuthenticationSuccessHandler
 import com.demo.security.listener.ApplicationSecurityEventListener
+import com.demo.security.service.ApplicationGormUserDetailsService
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.userdetails.NoStackUsernameNotFoundException
 import org.springframework.security.authentication.DefaultAuthenticationEventPublisher
+import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder
 
 // Place your Spring DSL code here
 beans = {
     def conf = SpringSecurityUtils.securityConfig
+
+    passwordEncoder(PlaintextPasswordEncoder)
 
     //To authorize login request
     authenticationProcessingFilter(ApplicationAuthenticationFilter) {
@@ -44,5 +48,9 @@ beans = {
     authenticationEventPublisher(DefaultAuthenticationEventPublisher) {
         additionalExceptionMappings =
                 ([(NoStackUsernameNotFoundException.name): AuthenticationFailureUserNotFoundEvent.name] as Properties)
+    }
+
+    userDetailsService(ApplicationGormUserDetailsService) {
+        grailsApplication = ref('grailsApplication')
     }
 }

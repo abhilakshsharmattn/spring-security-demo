@@ -52,5 +52,6 @@ class User implements Serializable {
 	static mapping = {
 		password column: '`password`'
 		table "user_detail"
+		datasources(['DEFAULT', 'customer'])
 	}
 }

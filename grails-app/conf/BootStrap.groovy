@@ -8,7 +8,6 @@ class BootStrap {
 
         Role adminRole = new Role("ROLE_ADMIN").save(flush: true)
         Role superUserRole = new Role("ROLE_SUPER_USER").save(flush: true)
-        Role customerUserRole = new Role("ROLE_CUSTOMER_USER").save(flush: true)
 
         User adminUser = new User("admin_user", "asdf1234").save(flush: true)
         UserRole.create(adminUser, adminRole, true)
@@ -20,8 +19,10 @@ class BootStrap {
         User superUser = new User("super_user", "asdf1234").save(flush: true)
         UserRole.create(superUser, superUserRole, true)
 
-        User customerUser = new User("customer_user", "asdf1234").save(flush: true)
-        UserRole.create(customerUser, customerUserRole, true)
+
+        Role customerUserRole = new Role("ROLE_CUSTOMER_USER").customer.save(flush: true)
+        User customerUser = new User("customer_user", "asdf1234").customer.save(flush: true)
+        new UserRole(user: customerUser, role: customerUserRole).customer.save(flush: true)
     }
     def destroy = {
     }

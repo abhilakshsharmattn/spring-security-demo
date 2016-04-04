@@ -33,6 +33,29 @@ environments {
                 validationQuery = "SELECT 1"
             }
         }
+
+        dataSource_customer {
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:postgresql://localhost:5432/spring_sec_demo_customer?autoReconnect=true"
+            logsql = true
+            pooled = true
+            driverClassName = "org.postgresql.Driver"
+            username = "postgres"
+            password = "admin"
+            properties {
+                maxActive = -1
+                minEvictableIdleTimeMillis = 1800000
+                timeBetweenEvictionRunsMillis = 1800000
+                numTestsPerEvictionRun = 3
+
+                testOnBorrow = true
+                testWhileIdle = true
+                testOnReturn = true
+
+                validationQuery = "SELECT 1"
+            }
+        }
+
     }
     test {
         dataSource {
